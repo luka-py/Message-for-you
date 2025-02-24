@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Letter</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+        
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: 'Homemade Apple', cursive;
+            overflow: hidden;
+        }
+
+        .scene {
+            perspective: 1000px;
+            width: 300px;
+            height: 200px;
+            position: relative;
+        }
+
+        .envelope {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .envelope-front {
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5eb;
+            position: absolute;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            z-index: 3;
+        }
+
+        .envelope-content {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+            overflow: hidden;
+            border-radius: 5px;
+            background-color: #f5f5eb;
+        }
+
+        .flap {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            right: 0;
+            background-color: #f5f5eb;
+            transform-origin: left;
+            cursor: grab;
+            z-index: 4;
+            border-left: 2px dashed #666;
+            transition: background-color 0.3s ease;
+        }
+
+        .flap:hover {
+            background-color: #f0f0e6;
+        }
+
+        .flap::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 20px;
+            height: 100%;
+            cursor: grab;
+        }
+
+        .envelope-details {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .sticker {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .sticker1 {
+            top: 10px;
+            right: 10px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ff9999"/><text x="50" y="60" text-anchor="middle" fill="white" font-size="24">❤️</text></svg>');
+        }
+
+        .sticker2 {
+            bottom: 10px;
+            right: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%239999ff"/><text x="50" y="60" text-anchor="middle" fill="white" font-size="24">✉️</text></svg>');
+        }
+
+        .letter {
+    position: fixed;
+    width: 260px;
+    height: 160px;
+    background-color: #f8f8f0;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-size: 13px;
+    line-height: 1.6;
+    font-family: 'Homemade Apple', cursive;  /* Add this line */
+    cursor: grab;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    display: none;
+
+        }
+
+        .letter.revealed {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 10;
+            left: 50%;
+            top: 50%;
+        }
+
+        .tear-here {
+            position: absolute;
+            top: 50%;
+            right: 60px;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: #666;
+            font-family: Arial, sans-serif;
+            animation: pulse 1s infinite;
+            z-index: 5;
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 3px;
+            pointer-events: none;
+        }
+
+        .opened {
+            z-index: 1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @media (max-width: 400px) {
+            .scene {
+                width: 250px;
+                height: 170px;
+            }
+            
+            .letter {
+                width: 210px;
+                height: 130px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <div class="envelope">
+            <div class="envelope-content"></div>
+            <div class="envelope-front">
+                <div class="envelope-details">
+                    From: Luk<br>
+                    To: Joya<br>
+                    Date: 23/2/2025
+                </div>
+                <div class="sticker sticker1"></div>
+                <div class="sticker sticker2"></div>
+                <div class="tear-here">← Tear here</div>
+                <div class="flap"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="letter">
+        Joya,
+
+        You always ask me why I love you; my answer is simple: 
+        
+        Nothing has ever felt more real. 
+        You're a place for my heart to rest, the 
+        hand I reach for in dark and light. 
+        Loving you wasn't a decision, it was something I realized 
+        I already did... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;     -Luk
+    </div>
+
+    <script>
+        const flap = document.querySelector('.flap');
+        const letter = document.querySelector('.letter');
+        const envelopeFront = document.querySelector('.envelope-front');
+        let isDragging = false;
+        let startX = 0;
+        let letterDragging = false;
+        let letterStartX = 0;
+        let letterStartY = 0;
+        let letterOffsetX = 0;
+        let letterOffsetY = 0;
+
+        const tearThreshold = 50;
+
+        flap.addEventListener('mousedown', startDragging);
+        flap.addEventListener('touchstart', startDragging);
+
+        window.addEventListener('mousemove', drag);
+        window.addEventListener('touchmove', drag);
+
+        window.addEventListener('mouseup', stopDragging);
+        window.addEventListener('touchend', stopDragging);
+
+        function startDragging(e) {
+            isDragging = true;
+            startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+            flap.style.cursor = 'grabbing';
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            const currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+            const deltaX = currentX - startX;
+            
+            if (deltaX > tearThreshold) {
+                envelopeFront.classList.add('opened');
+                letter.classList.add('revealed');
+                flap.style.display = 'none';
+            }
+        }
+
+        function stopDragging() {
+            isDragging = false;
+            flap.style.cursor = 'grab';
+        }
+
+        letter.addEventListener('mousedown', startLetterDrag);
+        letter.addEventListener('touchstart', startLetterDrag);
+
+        function startLetterDrag(e) {
+            if (!letter.classList.contains('revealed')) return;
+            letterDragging = true;
+            
+            if (e.type === 'mousedown') {
+                letterStartX = e.clientX;
+                letterStartY = e.clientY;
+                const rect = letter.getBoundingClientRect();
+                letterOffsetX = letterStartX - rect.left;
+                letterOffsetY = letterStartY - rect.top;
+            } else {
+                letterStartX = e.touches[0].clientX;
+                letterStartY = e.touches[0].clientY;
+                const rect = letter.getBoundingClientRect();
+                letterOffsetX = letterStartX - rect.left;
+                letterOffsetY = letterStartY - rect.top;
+            }
+            
+            letter.style.cursor = 'grabbing';
+            letter.style.transition = 'none';
+        }
+
+        function dragLetter(e) {
+            if (!letterDragging) return;
+            e.preventDefault();
+            
+            const currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+            const currentY = e.type === 'mousemove' ? e.clientY : e.touches[0].clientY;
+            
+            letter.style.left = `${currentX}px`;
+            letter.style.top = `${currentY}px`;
+            letter.style.transform = 'none';
+        }
+
+        function stopLetterDrag() {
+            if (!letterDragging) return;
+            letterDragging = false;
+            letter.style.cursor = 'grab';
+            letter.style.transition = 'all 0.3s ease';
+            letter.style.left = '50%';
+            letter.style.top = '50%';
+            letter.style.transform = 'translate(-50%, -50%)';
+        }
+
+        window.addEventListener('mousemove', dragLetter);
+        window.addEventListener('touchmove', dragLetter);
+
+        window.addEventListener('mouseup', stopLetterDrag);
+        window.addEventListener('touchend', stopLetterDrag);
+    </script>
+</body>
+</html>
